@@ -1,0 +1,16 @@
+Options +FollowSymLinks
+DirectoryIndex index.php
+<IfModule mod_php5.c>
+	php_value short_open_tag 1
+</IfModule>
+
+
+RewriteEngine On
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# otherwise forward it to index.php
+RewriteRule .* index.php [L]

@@ -1,0 +1,452 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/fonts/glyphicons-halflings-regular.eot');
+  src: 
+  url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+  url('/fonts/glyphicons-halflings-regular.woff') format('woff'), 
+  url('/fonts/glyphicons-halflings-regular.ttf') format('truetype'), 
+  url('/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+@font-face  {
+	font-family: "Db";
+	src:url("fonts/djvbold.ttf");
+}
+
+@font-face  {
+	font-family: "Dr";
+	src:url("fonts/djvreg.ttf");
+}
+
+@font-face  {
+	font-family: "Dl";
+	src:url("fonts/djvlight.ttf");
+}
+
+body {padding:0; margin:0;  font-family: 'Open Sans', sans-serif; background:url('/images/site/bg.png') #f0f0f0;}
+header {background:url('/images/site/_body_bgr.jpg');}
+h1,h2,h3,h4,h5,h6 {margin:0; padding:0;}
+a {outline:none;}
+form {overflow:hidden;}
+
+.row {padding:0; margin:0;}
+a, a:hover, a:focus, a:active {color: #1A9D30; text-decoration: none;}
+.btn {border-radius: 0; font-size: 12px; text-transform: uppercase;}
+div#sidebar .portlet {display:none;}
+.container {padding-left:0; padding-right:0;}
+
+.row.top {margin-bottom:3px;}
+.row.top .logo {margin-bottom: 6px;}
+.row.top .logo a {display:block; margin-top:10px;}
+.row.top .nav {margin-top:40px;}
+.row.top .nav .btn {padding:6px 0;}
+.row.top .nav .btn-group-justified {width:initial;}
+.row.top .nav a.btn-link {color:#FFFFFF; text-decoration:none; font-size:12px; text-transform:uppercase;}
+.row.top .nav a.btn-link span.name {background:url('/images/site/topicons_sprite_2.png') repeat-y;   padding: 25px 0 2px; border-bottom:3px #464d48 solid; background-position: 50% 0;}
+.row.top .nav a.btn-link .icon {width:22px; height:20px; display:block; margin:0 auto; margin-bottom:5px;}
+.row.top .nav a.btn-link.users .icon {}
+.row.top .nav a.btn-link.results 	.icon {background-position:-50px 0;}
+.row.top .nav a.btn-link.ratings 	.icon {background-position:-100px 0;}
+
+.row.top .nav a.btn-link.about 		            span {background-position: 50% 201px;}
+.row.top .nav a.btn-link.user                 span {background-position: 50% 0;}
+.row.top .nav a.btn-link.reglament-top6       span {background-position: 50% 101px;}
+.row.top .nav a.btn-link.grandprix            span {background-position: 50% 301px;}
+.row.top .nav a.btn-link.reglament-sudoku     span {background-position: 50% 151px;}
+.row.top .nav a.btn-link.external             span {background-position: 50% 251px;}
+.row.top .nav a.btn-link.archive              span {background-position: 50% 51px;}
+
+.row.top .login {margin-top: 2px;}
+.row.top .login form {text-align:center;}
+.row.top .login input {background: rgba(0,0,0,0.5); height: auto; text-align: center; border: none;
+  border-radius: 0; font-size: 13px; color: #FFFFFF; margin-top: 5px; display: block; padding: 3px 8px;
+  float: left;} 
+.row.top .login button.btn-default {background:none; color: #DDDC73; padding:0; font-size:10px; border:none; box-shadow:none; text-shadow:none;}
+
+.row.top .userlinks {text-align:left; padding-top:7px;}
+.row.top .userlinks a {color:white; font-size:10px; text-transform:uppercase; line-height:10px; text-decoration:none; border-bottom: 1px #666 solid;}
+.row.top .userlinks a:first-child {margin-bottom:15px;}
+.row.top .userlinks p {margin: 0;}
+.row.top .userlinks p.m-t {margin-top: 15px; text-align: right;}
+.row.top .userlinks .recover {margin-top: 8px;}
+.row.top .userlinks .user {background:url('/images/site/icon_user.png') no-repeat; padding-left:20px; border: 0;}
+.row.top .userlinks .admin {background:url('/images/site/icon_admin.png') no-repeat; padding: 0 13px 2px 0;   margin-right: 10px; border: 0;}
+.row.top .userlinks .logout {text-align: right;}
+.row.top .userlinks .logout a {color:gray; border: 0;}
+
+.row.leagues {background:rgba(0,0,0,0.5);}
+.row.leagues .container {padding-top:20px; padding-bottom:20px; border-bottom:3px solid #4f524f;}
+.row.leagues div.leagues {}
+.row.leagues div.leagues a {color:#CCCCCC; font-size:10px; text-transform:uppercase; text-align:center; text-decoration:none;}
+.row.leagues div.leagues a span.logo {width:81px; height:73px; background:url("/images/site/leagues_sprite.png") no-repeat; display:block; margin:0 auto 10px;}
+.row.leagues div.leagues a span.flag {width:32px; height:24px; background:url("/images/site/flags_sprite.png") no-repeat; display:block; margin:0 auto 10px;}
+.row.leagues div.leagues a em {font-size:13px; display:block; font-style:normal;} 
+
+.row.leagues div.leagues a.en span.logo {background-position: 5px 0px;}
+.row.leagues div.leagues a.es span.logo {background-position: -95px 0px;}
+.row.leagues div.leagues a.de span.logo {background-position: -200px 0px;}
+.row.leagues div.leagues a.it span.logo {background-position: -301px 0px;}
+.row.leagues div.leagues a.fr span.logo {background-position: -391px 0px;}
+.row.leagues div.leagues a.ru span.logo {background-position: -495px 0px;}
+.row.leagues div.leagues a.ua span.logo {background-position: -595px 0px;}
+.row.leagues div.leagues a.fnl span.logo {background-position: -705px 0px;}
+.row.leagues div.leagues a.sudoku span.logo {background-position: -810px 0px;}
+.row.leagues div.leagues a.viva-sudoku- {display:none;}
+
+.row.leagues div.leagues a.en span.flag, .league_title .en {background-position: 0px 0px;}
+.row.leagues div.leagues a.es span.flag, .league_title .es {background-position: -50px 0px;}
+.row.leagues div.leagues a.de span.flag, .league_title .de {background-position: -100px 0px;}
+.row.leagues div.leagues a.it span.flag, .league_title .it {background-position: -150px 0px;}
+.row.leagues div.leagues a.fr span.flag, .league_title .fr {background-position: -200px 0px;}
+.row.leagues div.leagues a.ru span.flag, .league_title .ru {background-position: -250px 0px;}
+.row.leagues div.leagues a.ua span.flag, .league_title .ua {background-position: -300px 0px;}
+.row.leagues div.leagues a.fnl span.flag, .league_title .fnl {background-position: -250px 0px;}
+.row.leagues div.leagues a.sudoku span.flag, .league_title .sudoku {background-position: -352px 0px;}
+
+.row.filter {padding-top:10px; padding-bottom:10px; background:rgba(0,0,0,0.5);}
+.row.filter div.filters a {display:block; line-height:23px; font-size:12px; text-transform:uppercase; color:#cccccc; text-decoration:none; float:left; margin-right:20px;}
+.row.filter div.filters a span.icon {width:23px; height:23px; background: url('/images/site/cup_sprite.png'); float:left; margin-right:10px;}
+.row.filter div.filters a.granpri span.icon {background-position: -50px 0;} 
+
+.row.footer {background: rgba(0,0,0,0.7);}
+.row.footer .primegang {height:100px; background:#303030; padding:10px 0 0 20px;}
+.row.footer .macrologo { padding:30px 0 0 20px;}
+.row.footer .macrologo span {display:block; color:silver; font-size:9px; text-transform: uppercase;}
+.row.footer .macrologo img {}
+
+
+.row.content {padding-bottom:30px;}
+
+.news.list.item {background: #FFFFFF; border-bottom:2px solid #99cc99; margin-top:30px; padding:10px 15px;}
+.news.list.item .datetags {overflow: hidden; margin-bottom:10px; text-align: center;}
+.news.list.item .date {font-size:12px; color:#666; line-height:12px; display:block; margin: 20px 0 0;}
+.news.list.item .tags span {font-size:9px; color:#000; line-height:12px; display:block; float:left; background:#e9e9e9; text-transform:uppercase; border-radius: 10px; padding:0 8px;}
+.news.list.item .img img {display:block; margin: 0 auto;}
+.news.list.item h1 {padding:0; margin: 10px 0; line-height: 28px; text-align: center; text-transform: uppercase;}
+.news.list.item h1 a {text-decoration:none; font-size:24px; color: #3DA63D; border-bottom: 2px #ddd solid; line-height: 40px;}
+.news.list.item .text {font-size:14px; color:#000; padding: 0 20px; line-height: 24px;}
+.news.list.item .text p a, .news.list.item .text li a {border-bottom: 1px #BDE5C5 solid;}
+.news.list.item .text ul {}
+.news.list.item .text li {margin-bottom: 10px;}
+
+span.required {color:#CC002B;}
+.form div.row {margin-bottom:10px;}
+.form div.row label {display:block; font-weight:normal;}
+.form div.row label.required {font-family:Db;}
+.form div.row input {color:#000000; border:none; display:block; width:400px; padding:5px 10px; margin:8px 0;}
+.form div.row .errorMessage {padding:3px 10px; color:#CC002B; background: rgba(255,0,0,0.1); text-transform:uppercase; font-size:10px;}
+.form div.row p.hint {font-size:10px; text-transform:uppercase; color:#666;}
+
+.row.buttons.submit {background-color: rgb(240, 213, 213); padding: 20px; margin-top: 20px; margin-bottom: 0px;}
+.row.buttons.submit button {margin: 0 0 20px;}
+.row.buttons.submit p {color: black; font-size: 12px; text-transform: uppercase;}
+.news.list.page {background: #FFFFFF; border-bottom:2px solid #99cc99; margin-top:30px; padding:10px 15px;}
+.news.list.page .datetags {overflow: hidden; margin-bottom:10px;}
+.news.list.page .date {font-size:9px; color:#666; line-height:12px; display:block; float:left;}
+.news.list.page .tags span {font-size:9px; color:#000; line-height:12px; display:block; float:left; background:#e9e9e9; text-transform:uppercase; border-radius: 10px; padding:0 8px;}
+.news.list.page .img img {border-radius:15px; display:block;}
+.news.list.page h1 {color:#33cc33;}
+.news.list.page .text {font-size:13px; color:#000;}
+
+.league {text-align: center; margin-bottom: 50px; margin-top: 30px;}
+.league>img {}
+.league_title {font-size: 20px; text-transform: uppercase; text-align: center; margin: 35px 0 15px;}
+.league_title span {background:url('/images/site/flags_sprite.png') no-repeat; padding: 0 0 0 36px; margin-right: 5px;}
+
+.tours {margin-top: 30px;}
+.tour {background: white; text-transform: uppercase; overflow: hidden; margin-bottom: 20px;}
+
+.tour .tourinfo {font-size: 11px; background: white;}
+.tour a.tourinfo {color:black; padding: 0 10px;}
+.tour a:active, .tour a:hover, .tour a:focus {text-decoration:none;}
+.tour .tour_next_prev {float: left; margin-top: 8px;}
+.tour .tour_date {float: right; margin-top: 8px;}
+.tour .tour_number {width: 200px; margin: 0 auto; padding: 8px 0; color:white;}
+.tour.next .tour_number {background: #3c3;}
+.tour.prev .tour_number {background: #696;}
+
+.tour.prev .table,
+.league_statistics .table {width: 80%; margin: 20px auto;}
+
+.tour.prev .table>tbody>tr,
+.league_statistics .table>tbody>tr {height: 30px;}
+
+.tour.prev .table>tbody>tr .user_legend,
+.league_statistics .table>tbody>tr .user_legend {width:20%;}
+
+.tour.prev .table > tbody > tr .user_legend.sudoku,
+.league_statistics .table > tbody > tr .user_legend {width:35% !important;}
+.league_statistics .table>tbody>tr .user_legend.team {width:60% !important; padding:12px 3px !important;}
+
+.tour.prev .table>tbody>tr .place_legend,
+.league_statistics .table>tbody>tr .place_legend {width:5%;}
+
+.tour.prev .table>tbody>tr .place,
+.league_statistics .table>tbody>tr .place {font-size: 11px; color: gray;}
+
+.tour.prev .table>tbody>tr .user,
+.tour.prev .table>tbody>tr .points,
+.league_statistics .table>tbody>tr .user,
+.league_statistics .table>tbody>tr .points {font-weight: bold; font-size: 11px; text-transform: uppercase;}
+
+.league_statistics .table>tbody>tr .points {color:#696; font-size: 12px;}
+
+.tour.prev .table>tbody>tr>th,
+.league_statistics .table>tbody>tr>th {padding: 12px 3px; background: #ccc; font-size: 10px; text-align: center;   border-bottom: 1px gray solid; width: 12.5%; text-transform: uppercase;}
+
+.tour.prev .table>tbody>tr>td,
+.league_statistics .table>tbody>tr>td {background: #efefef; font-size: 12px; text-align: center; vertical-align: middle;}
+
+.tour.prev .table>tbody>tr .user,
+.tour.prev .table>tbody>tr .points,
+.league_statistics .table>tbody>tr>td
+.league_statistics .table>tbody>tr>td {font-weight: bold; font-size: 11px; text-transform: uppercase;}
+
+.tour.prev .table>tbody>tr .points {color: #696;}
+
+.league_statistics {background: white; padding: 10px 10px 20px;}
+.league_statistics.grand-prix {margin-top: 0; padding: 20px 0;}
+.league_statistics h3 {width: 200px; margin: -10px auto 10px !important; background: #333; color: white; font-size: 11px !important; padding: 8px 0; text-transform: uppercase;}
+
+.tour.prev h4 {font-size: 12px; margin: 20px;}
+
+.tour.prev .totals {margin-top: 20px;}
+.tour.prev .totals div {display: inline;}
+.tour.prev .totals .points {font-size: 16px; border: 1px #ddd solid; margin: 0 5px; border-radius: 2px; color: green; padding: 2px 11px;}
+.tour.prev .totals .goals {font-weight: bold; color: #FFFFFF; background: #666; text-align: center; width: 30px; padding: 2px 11px; border-radius: 2px; font-size: 17px;} 
+
+.league_statistics.sudoku {}
+.league_statistics.sudoku .place {width: 5%;}
+.league_statistics.sudoku .team_legend {width: 50%;}
+.league_statistics.sudoku .team {text-align: left; padding: 0;}
+.league_statistics.sudoku .team h6 {font-size: 11px; font-weight: bold; text-transform: uppercase; display: inline;}
+.league_statistics.sudoku .team img {width: 34px; margin-right: 5px;}
+.league_statistics.sudoku .team ul {list-style:none; margin:0; padding:0;}
+.league_statistics.sudoku .team li {display: inline; background: #ddd; padding: 2px 4px; float: left; margin: 5px 5px 0 0; text-transform: uppercase; font-size: 11px;}
+.league_statistics.sudoku .numbers { width:5%; }
+.league_statistics.sudoku .numbers.large { width: 10%; }
+.league_statistics.sudoku .goals {color: black; font-weight: bold;}
+.league_statistics.sudoku .points {color: #696; font-weight: bold;}
+
+.tour .tour_results {padding: 0 10px; overflow: hidden; margin-bottom: 0px;}
+.tour .tour_result {width: 260px; float: left; text-align: left; margin: 10px 10px 15px;}
+.tour .tour_result>span {font-size: 10px; padding-left: 8px; color: gray;}
+.tour .tour_result>span b {font-weight: normal; float: right; color: #2AB82A; margin-top: 3px;}
+.tour .tour_result .first {border-bottom: 1px solid #ddd; padding: 10px 8px 8px;}
+.tour .tour_result .second {padding: 10px 8px 8px;}
+.tour .tour_result .first span {line-height: 19px; font-weight: bold;}
+.tour .tour_result .second span {line-height: 19px; font-weight: bold;}
+.tour .tour_result .points {font-size: 10px; color: gray; float: right; margin-right: -1px;}
+.tour .tour_result .points span {font-size: 11px; color: white; background: #696; padding: 0 7px;}
+
+.tour .tour_results .protocol {width: 200px; margin: 20px auto 0; background: #ccc; padding: 8px; font-size: 11px;}
+.tour .tour_results .protocol a {color: black;}
+
+.tour.next .tour_result_team {background: #eee; padding: 8px; font-size: 11px;}
+.tour.next .tour_result.sent span b {display:inline !important;}
+.tour.next .tour_result.sent .tour_result_team {background:#D8F5D8;}
+.tour .tour_result_team input {float:right; width: 30px; border: 0; padding:1px 4px; margin-top: -1px; font-size: 14px; font-weight: bold; text-align: center;}
+.tour.next .tour_result_team input {background: white;}
+.tour.prev .tour_result_team input {background: #eee;}
+
+.tour.prev .tour_result_team {padding: 8px; font-size: 11px; background: #efefef;}
+.tour.prev .tour_result_team span.result {float: right; width: 30px; text-align: center; background: #ddd; font-size: 14px; font-weight: bold;}
+.tour.prev .tour_result_team .prognosis {float: right; font-size: 12px; border: 1px #ddd solid; padding: 0 10px; line-height: 17px; margin-right: 5px; border-radius: 2px; color: green; font-weight: bold;}
+
+.tour.prev .leaders {background: #ddd; padding: 10px; overflow:hidden; margin-top: 20px;}
+.tour.prev .leaders .item {display: block; background: white; width: 140px; float: left; padding: 8px 0 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin: 10px; font-weight: bold;}
+.tour.prev .leaders h3 { width: 200px; margin: -10px auto 10px; background: #333; color: white; font-size: 11px; padding: 8px 0;}
+.tour.prev .leaders .item h5 {font-size: 20px; padding-top: 5px;}
+.tour.prev .leaders .item h6 {font-size: 12px; border-bottom: 1px #e3e3e3 solid; padding-bottom: 5px;}
+
+.league_sidebar {margin-top: 184px;}
+.league_sidebar .usermenu {margin-top: -30px; text-align: center; text-transform: uppercase; font-size: 12px; border: 3px white solid; margin: 0 20px; padding: 20px;}
+.league_sidebar .usermenu a {color: black; font-weight: bold;}
+.league_sidebar .usermenu span {display:block; margin-top:20px; padding: 0 20px; font-size: 13px; text-transform: none;}
+.league_sidebar .usermenu img {margin-bottom: 6px;}
+.top.league h2 {font-size: 11px; text-transform: uppercase; letter-spacing: 1px; background: #333; margin: 0 20px; padding: 8px 0; color: white;}
+
+.top.league.goleadors {background: url('/images/site/fedotov.png') no-repeat 50% 0; padding-top: 116px;   margin-top: 80px;} 
+.top.league h2 {}
+
+.top.league .item {margin: 10px 20px 20px;}
+.top.league a {text-transform: uppercase; font-size: 12px; border-bottom: 1px silver solid;} 
+.top.league .item>img {margin-bottom: -14px; position: relative;}
+.top.league .item h4 {font-size: 12px; margin-bottom: 7px; text-transform: uppercase;}
+.top.league .item h5 {font-size: 12px; padding: 5px 0; text-transform: uppercase; font-weight: bold;}
+.top.league .item h6 {font-size: 20px; padding: 3px; color: white; background: #696; width: 70px; margin: 0 auto 10px;}
+.top.league .item .avatar {}
+.top.league .item .avatar img {width: 55px; border-radius: 34px; border: 2px #9CE29C solid; padding: 5px;}
+.league .form-group input {width:500px; margin: 0 auto;}
+
+.tours.sudoku {}
+.tours.sudoku .time {margin-top: 20px;}
+.tours.sudoku .time h3 {font-size: 10px; letter-spacing: 1px; color: gray; margin-bottom: 5px;}
+.tours.sudoku .tour_results {margin:20px 0 0;}
+.tours.sudoku .line {background: #efefef; margin: 1px auto; width: 80%;}
+.tours.sudoku .line.editable {background:#D8F5D8; font-size: 12px; font-weight: bold;}
+.tours.sudoku .line.editable .score span input {background:white;}
+.tours.sudoku .line .team1 {margin: 12px 0 0 15px; font-size: 12px;}
+.tours.sudoku .line .team2 {margin: 12px 15px 0 0; font-size: 12px;}
+.tours.sudoku .line .score {width:300px; margin: 0 auto;}
+.tours.sudoku .line .score span {}
+.tours.sudoku .line .score span.glyphicon-remove {font-size: 20px; text-align: center; border:0; margin: 3px 0px 3px 1px; padding: 2px; } 
+.tours.sudoku .line .score span input {width: 50px; font-size: 20px; text-align: center; border:0; margin: 3px 0px 3px 1px; padding: 2px; background: #ddd;}
+
+.tours.sudoku .readyTeams {background: #ddd; margin: 20px -10px 0 -10px; padding-bottom: 20px;}
+.tours.sudoku .readyTeams .header {}
+.tours.sudoku .readyTeams .header h6 {width: 200px; margin: -10px auto 10px; background: #333; color: white; font-size: 11px; padding: 8px 0;}
+.tours.sudoku .readyTeams .items {overflow: hidden; width: 80%; margin: 10px auto 0;}
+.tours.sudoku .readyTeams .items .item {float: left; background: #efefef; padding: 3px 8px; margin: 10px 5px 0 0; font-size: 11px; font-weight: bold; color: #666;}
+
+.tours.sudoku .info {background: #ddd;}
+.tours.sudoku .info h3 {width: 200px; margin: -10px auto 10px; background: #333; color: white; font-size: 11px; padding: 8px 0;}
+.tours.sudoku .info h4 {width: 200px; margin: 0 auto 10px; background: #333; color: white; font-size: 11px; padding: 8px 0;}
+.tours.sudoku .info .results {width: 600px; margin: 4px auto; border-bottom: 1px white solid;}
+.tours.sudoku .info .results .team1 {float: left; margin-top: 4px;}
+.tours.sudoku .info .results .team2 {float: right; margin-top: 4px;}
+.tours.sudoku .info .results .score {width: 100px; margin: 0 auto; font-size: 22px;}
+
+.tours.sudoku .info .leaders {background: #ddd; overflow: hidden; border-top: 1px gray solid; margin-top: 15px;}
+.tours.sudoku .info .leaders .item {display: block; background: white; width: 140px; float: left; padding: 8px 0 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin: 10px; font-weight: bold;}
+.tours.sudoku .info .leaders .item h5 {font-size: 12px; border-bottom: 1px #e3e3e3 solid; padding-bottom: 5px;}
+.tours.sudoku .info .leaders .item h6 {font-size: 20px; padding-top: 5px;}
+
+.tours.sudoku .tour .buttons {margin-top:15px;}
+.tours.sudoku .tour .btn-primary[type=submit] { border:none; background:rgb(21,119,40); margin-bottom: 20px;}
+.tours.sudoku .tour .errorSummary {margin: 20px; padding: 20px; border-radius: 5px; border: 1px rgb(245, 173, 173) solid;}
+
+.tours.sudoku .tour .table.games {font-size: 11px; font-weight: bold; width: 80%; margin: 0 auto 20px;}
+.tours.sudoku .tour .table.games tr {height: initial;}
+.tours.sudoku .tour .table.games th {padding: 12px 3px; background: #ddd; font-size: 10px; text-align: center; border-bottom: 1px gray solid;}
+.tours.sudoku .tour .table.games th.time {width: 10%;}
+.tours.sudoku .tour .table.games th.results {width:86%;}
+.tours.sudoku .tour .table.games td {}
+.tours.sudoku .tour .table.games td.time {font-weight: normal; color: gray; width: 10%;}
+.tours.sudoku .tour .table.games td.team { width: 35%;}
+.tours.sudoku .tour .table.games td.team1 {width: 33%;}
+.tours.sudoku .tour .table.games td.team2 {width: 43%;}
+.tours.sudoku .tour .table.games td.score {font-size: 14px; padding: 0; width: 5%;}
+.tours.sudoku .tour .table.games td.score span {background: #ddd; padding: 2px 10px; line-height: 31px;}
+
+.tours.sudoku .tour_results .protocol {width: 200px; margin: 0 auto; background: #ccc; padding: 5px; font-size: 11px;}
+.tours.sudoku .tour_results .protocol a {color:black;}
+
+.table tbody tr {background: white; height: 45px;  vertical-align: middle;}
+
+.bg-warning {margin: 20px; padding: 20px; border-radius: 5px; border: 1px rgb(245, 173, 173) solid;}
+
+.right {}
+
+.sudokuTour {background:#FFFFFF; padding: 0 10px 10px 10px; margin-top:40px;}
+.sudokuTour h2 {padding-bottom: 10px; font-size: 12px; text-transform: uppercase; font-weight: normal; background-color: #333; width: 350px; margin: 0 auto 20px; color: white; padding-top: 10px;}
+.sudokuTour .deadline {font-size:12px; text-transform:uppercase; background-color: rgb(240, 213, 213); padding: 5px 0; border-bottom: 1px white solid; border: 1px rgb(218, 163, 163) solid;
+  margin-bottom: 5px;}
+.sudokuTour .table td {text-align:left; font-size:12px;}
+.sudokuTour .table td b {font-weight:normal; font-family:Db;}
+ 
+.sudokuTour .prognosis.item {display:block; padding:6px; border-radius:4px; color:#000000; text-decoration:none; }
+.sudokuTour a.prognosis.item:hover {background:#f0f0f0; }
+.sudokuTour a.prognosis.item.playing {background:#00B7EC;}
+.sudokuTour a.prognosis.item span {display:block-inline; padding:3px 5px; background:#CCCCCC; border-radius: 2px;}
+
+.left {padding:0;}
+.left h1 {font-size: 20px; text-transform: uppercase; text-align: center; margin: 35px 0 15px;}
+.left h3 {font-size: 14px; text-transform: uppercase; margin: 12px 0 0;}
+.left .dataGrid {margin:10px auto 30px;}
+.left .dataGrid tbody td, .left .dataGrid tbody th {padding: 8px 5px; border-bottom: 1px #d1d1d1 solid;}
+.left .dataGrid .label {color: gray; font-weight: normal; width: 200px; display: block; font-size: 11px; padding: 15px 10px; border: 0; text-align: right; text-transform: uppercase;}
+.left .btn-group {}
+
+.single.page {padding: 0;}
+.single.page h1 {font-size: 20px; text-transform: uppercase; text-align: center; margin: 35px 0 15px;}
+.single.page .text {background: white; padding: 35px;  font-size: 14px; line-height: 24px;}
+
+.sudokuTour p.hint {font-size:11px; color:#505050; margin: 20px;}
+.sudokuTour .sudokuTime .cblock {width:60%; margin:0 auto; text-align:left; background-color: #efefef; padding: 20px; margin-bottom: 20px;}
+.sudokuTour .sudokuTime h3 {padding-bottom: 10px; font-size: 12px; text-transform: uppercase;  font-weight: normal; background-color: #ccc; width: 200px; margin: 0 auto; color: black; padding-top: 10px;}
+.sudokuTour .sudokuTime .player {overflow: hidden; padding-bottom:10px; border-bottom: 1px silver solid; margin-bottom:10px; display:block; color:#000000;}
+.sudokuTour .sudokuTime .player .name {float: left; padding: 5px 10px; font-size: 11px; border-radius: 6px; border: 2px silver dotted; margin-top: 12px; text-transform: uppercase; font-weight: bold; color: #666;}
+.sudokuTour .sudokuTime .player .prognosis {float:right;}
+.sudokuTour .sudokuTime .player .prognosis .row {overflow: hidden; margin-bottom:1px;}
+.sudokuTour .sudokuTime .player .prognosis .row span {display:block; float:left; background:#CCCCCC; border-radius: 2px; font-size:11px; font-weight:bold; padding:1px 8px; margin-left:1px;}
+
+.sudokuTour .sudokuTime a.player.selected .name {background: #D89191; border: 2px #BA5C5C dotted; color: white;}
+.sudokuTour .sudokuTime div.player.selected .name {background:#cccccc;}
+
+.touronline table.players {width: 80%; margin: auto; background: #efefef; margin: 20px auto;}
+.touronline table.players .absent {font-size: 12px; font-weight: bold; letter-spacing: 1px; color: gray; padding: 40px 0;}
+.touronline table.players .absent img {margin-bottom:10px;}
+
+.total_absent {width: 50%; float: left; margin: 50px 0; font-size: 12px; font-weight: bold; letter-spacing: 1px; color: gray;}
+.total_absent img {margin-bottom:10px;}
+
+
+.touronline table.players td {width:50%; text-transform:uppercase; vertical-align: top;}
+.touronline table.players td .player {font-size: 11px; text-align: left; padding: 5px 10px; background: #ccc; color: black; font-weight: bold;}
+.touronline table.players td .games {margin:5px 0;}
+.touronline table.players td .games .game {overflow:hidden; margin-bottom: 5px; text-align:left;}
+.touronline table.players td .games .game .goals {font-weight: bold; color: #FFFFFF; background: #666; text-align: center; width: 30px; padding: 2px 11px; border-radius: 2px; font-size: 13px;}
+.touronline table.players td .games .game .points {font-size: 12px; border: 1px #ddd solid; line-height: 17px; margin: 0 5px; border-radius: 2px; color: green; font-weight: bold; padding: 2px 11px;}
+.touronline table.players td .games .game .empty {color: silver; margin: 0 10px;}
+.touronline table.players td .games .game .prognosis {overflow:hidden; margin: 0 10px;}
+.touronline table.players td .games .game .prognosis span {display:inline-block; padding:3px 8px; background:#ddd; width:30px; margin:0 1px; text-align:center; font-weight: bold; color: #666; font-size: 12px;}
+.touronline table.players td.players2 .player {text-align:right;}
+
+#teamadmin-form .legend {padding: 20px 20px 10px; margin-bottom: 20px; font-size: 12px;
+  color: black; text-align: left; margin-top: 20px; border: 2px #ddd solid;}
+#teamadmin-form .legend p {}
+#teamadmin-form .legend span {margin-right: 10px; font-size: 18px; display: block; float: left;}
+
+.sudokuTime .lineup p {font-size: 11px; border: 2px rgb(240, 213, 213) solid; padding: 10px; margin-bottom: 20px;}
+
+.league.touronline .table.bombers {}
+.league.touronline .table.bombers tr {}
+.league.touronline .table.bombers th {padding: 12px 3px; background: #ccc; font-size: 10px; text-align: center; border-bottom: 1px gray solid; width: 12.5%; text-transform: uppercase; vertical-align: middle;}
+.league.touronline .table.bombers td {vertical-align: middle; text-transform:uppercase;}
+
+.league.touronline .table.bombers th.place {width:5%;}
+.league.touronline .table.bombers th.player {width:55%;}
+.league.touronline .table.bombers th.team {width:20%;}
+.league.touronline .table.bombers th.games {width:10%;}
+.league.touronline .table.bombers th.points {width:10%;}
+
+.league.touronline .table.bombers td.place {font-size: 11px; color: gray;}
+.league.touronline .table.bombers td.player {text-align:left;}
+.league.touronline .table.bombers td.player img {width:30px; float: left; margin-right: 20px;}
+.league.touronline .table.bombers td.player h6 {font-weight: bold;}
+.league.touronline .table.bombers td.player span {font-size: 11px; color: #666;}
+.league.touronline .table.bombers td.team {font-size: 11px; font-weight: bold; color: #666;}
+.league.touronline .table.bombers td.games {}
+.league.touronline .table.bombers td.points {}
+
+.tour.prev.byothers {}
+.tour.prev.byothers h3 {width: 200px; margin: 0 auto 10px; background: #333; color: white; font-size: 11px; padding: 8px 0;}
+.tour.prev.byothers .prognoses {float: left; padding: 12px 20px 20px; text-align: left;}
+.tour.prev.byothers .prognoses .item {float: left; margin: 0 12px 17px 0px;}
+.tour.prev.byothers .prognoses .item span {color: white; background: #666; padding: 3px 8px; border-radius: 3px; margin: 2px;}
+.tour.prev.byothers .prognoses .item div {display:inline; font-size: 12px; color: #333;}
+
+
+
+.sudokuTour p.hint {font-size:11px; color:#505050; margin: 20px;}
+.team_lineup {margin:0 auto; text-align:left; background-color: #efefef; padding: 20px; margin-bottom: 20px;}
+.team_lineup  h3 {padding-bottom: 10px; font-size: 12px; text-transform: uppercase;  font-weight: normal; background-color: #ccc; width: 200px; margin: 0 auto; color: black; padding-top: 10px;}
+.team_lineup .player {overflow: hidden; padding-bottom:10px; border-bottom: 1px silver solid; margin-bottom:10px; display:block; color:#000000;}
+.team_lineup .player .name {float: left; padding: 8px 10px; font-size: 11px; margin-top: 12px; text-transform: uppercase; font-weight: bold; color: #666;}
+.team_lineup .player .prognosis {float:right;}
+.team_lineup .player .prognosis .row {overflow: hidden; margin-bottom:1px;}
+.team_lineup .player .prognosis .row span {display:block; float:left; background:#aaa; border-radius: 2px; font-size:11px; font-weight:bold; padding:1px 8px; margin-left:1px;}
+.team_lineup .player .prognosis .row span.points {background: #ccc; border: 1px #ddd solid; padding: 0 8px; margin: 0 0px 0 5px;}
+
+.portlet.supportedby img {width:200px; margin-top: 20px;}
+.portlet.supportedby a {border:0;}
+.portlet.supportedby h5 {font-size: 12px; padding: 5px 20px; text-transform: uppercase; font-weight: bold; line-height: 20px; margin-top: 10px;}
+.portlet.supportedby a h5 {color:black;}
+
+/** active row **/
+table.table tr.active td {
+    background: #b7ecb7 none repeat scroll 0 0;
+}
+.tour.prev .table>tbody>tr.active>td,
+.league_statistics .table>tbody>tr.active>td {background: #b7ecb7;}
