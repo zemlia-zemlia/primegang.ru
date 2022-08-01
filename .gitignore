@@ -1,6 +1,9 @@
-assets/*
-!assets/.gitignore
-protected/runtime/*
-!protected/runtime/.gitignore
-protected/data/*.db
-themes/classic/views/
+primegang.ru/assets/*
+!primegang.ru/assets/.gitignore
+primegang.ru/protected/runtime/*
+!primegang.ru/protected/runtime/.gitignore
+primegang.ru/protected/data/*.db
+primegang.ru/themes/classic/views/
+primegang.ru/.DS_Store
+primegang.ru/protected/config
+primegang.ru/protected/config/*
