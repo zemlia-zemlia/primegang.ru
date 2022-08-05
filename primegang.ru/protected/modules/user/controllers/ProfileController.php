@@ -17,9 +17,12 @@ class ProfileController extends Controller
 	 */
 	public function actionProfile() {
 		$model = $this->loadUser();
-		
-	    $this->render('profile',array(
+        $profileFields=ProfileField::model()->forOwner()->sort()->findAll();
+
+
+        $this->render('profile',array(
 	    	'model'=>$model,
+	    	'profileFields'=>$profileFields,
 			'profile'=>$model->profile,
 	    ));
 	}
