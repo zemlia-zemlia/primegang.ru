@@ -29,28 +29,32 @@ $this->menu=array(
 				    <td><?php echo CHtml::encode($model->username); ?></td>
 				</tr>
 				<?php 
-					$profileFields=ProfileField::model()->forOwner()->sort()->findAll();
-					if ($profileFields) {
-						foreach($profileFields as $field) {
-							//echo "<pre>"; print_r($profile); die();
+//                echo "<pre>"; print_r($profileFields); die();
+                if ($profileFields) :
+						foreach($profileFields as $field) :
+//							echo "<pre>"; print_r($profile); die();
 						?>
 				<tr>
 					<th class="label"><?php echo CHtml::encode(UserModule::t($field->title)); ?></th>
-			    	<td><?php 
+			    	<td><?php
 			    		if($field->varname == 'userimage'):?>
-			    		<img class="userimage" src="/<?php 
-				    		$src = "".$profile->getAttribute($field->varname);
-				    		if(!empty($src)) echo $src;
-							else echo "images/site/no_avatar.png";
-			    		?>">
-			    		<? else:
-			    		echo (($field->widgetView($profile))?$field->widgetView($profile):CHtml::encode((($field->range)?Profile::range($field->range,$profile->getAttribute($field->varname)):$profile->getAttribute($field->varname))));
-						endif; 
+                            <?php $src = "".$profile->getAttribute($field->varname);
+                            if(empty($src)) :
+                                 $src = "images/site/no_avatar.png";
+
+                            endif;
+                            ?>
+
+
+			    		<img width="150" class="userimage" src="/<?=$src?>">
+
+						<? endif;
 			    		?></td>
 				</tr>
 						<?php
-						}//$profile->getAttribute($field->varname)
-					}
+                    endif;
+						endforeach;//$profile->getAttribute($field->varname)
+                        endif;
 				?>
 				<tr>
 					<th class="label"><?php echo CHtml::encode($model->getAttributeLabel('email')); ?></th>

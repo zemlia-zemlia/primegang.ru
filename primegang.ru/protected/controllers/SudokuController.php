@@ -1,6 +1,33 @@
 <?php
+//use services\TourService;
+//use CWebModule;
 
 class SudokuController extends Controller {
+
+//    /** @var TourService */
+//    private $tourService;
+//
+//
+//    /**
+//     * @param string $id
+//     * @param CWebModule $module
+//     * @param TourService $tourService
+//     * @param array $config
+//     */
+//    public function __construct(
+//        string $id,
+//        null,
+//        TourService $tourService,
+//        array $config = []
+//    )
+//    {
+//        parent::__construct($id, $module, $config);
+//
+//        $this->tourService = $tourService;
+//    }
+//
+
+
 	function init() {
 		parent::init();
 		Yii::app()->theme = 'prime';
@@ -114,8 +141,10 @@ class SudokuController extends Controller {
 			}
 		}
 
+        $tourService = new TourService();
+
 		$season = SudokuSeasons::getCurrentSeason();
-		$tourTable = $this->returnTourTable($season->id);
+		$tourTable = $tourService->returnTourTable($season->id);
 		$this->render('index', array('currentPrognosis'=>$model, 'tourTable'=>$tourTable, 'season' => $season));
 	}
 	

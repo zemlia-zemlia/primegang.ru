@@ -91,7 +91,9 @@
 						<?php
 							$menu = TopMenu::model()->findAll();
 							foreach($menu as $item):
-								$itemClass = array_pop(explode('/', $item->url));
+//                                CVarDumper::dump($menu,5,true); die;
+								$itemClass = str_replace('/', '', $item->url);
+//								$itemClass = array_pop(explode('/', $item->url));
 								if(strtolower(substr($item->url, 0, 4)) == 'http') $itemClass="external";
 						?>
 						<a role="button" class="btn btn-link <?php echo $itemClass;?>" href="<?php echo $item->url;?>" <?php
