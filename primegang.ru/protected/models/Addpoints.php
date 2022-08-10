@@ -1,23 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "seasons".
+ * This is the model class for table "addpoints".
  *
- * The followings are the available columns in table 'seasons':
+ * The followings are the available columns in table 'addpoints':
  * @property integer $id
- * @property integer $id_league
- * @property integer $archive
- * @property string $name
- * @property string $alias
+ * @property integer $id_sudoku_team
+ * @property integer $id_tour
  */
-class Seasons extends CActiveRecord
+class Addpoints extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'seasons';
+		return 'addpoints';
 	}
 
 	/**
@@ -28,25 +26,13 @@ class Seasons extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, alias', 'required'),
-			array('archive', 'safe'),
-			array('name, alias', 'length', 'max'=>255),
+			array('id_sudoku_team, id_tour', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, alias, archive', 'safe', 'on'=>'search'),
+			array('id, id_sudoku_team, id_tour', 'safe', 'on'=>'search'),
 		);
 	}
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-		);
-	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -54,10 +40,9 @@ class Seasons extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-            'id' => 'ID',
-            'name' => 'Название',
-            'alias' => 'Url',
-            'archive' => 'Архив',
+'id' => 'ID',
+'id_sudoku_team' => 'Id Sudoku Team',
+'id_tour' => 'Id Tour',
 		);
 	}
 
@@ -80,15 +65,11 @@ class Seasons extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('alias',$this->alias,true);
-		$criteria->compare('archive',$this->alias,true);
+		$criteria->compare('id_sudoku_team',$this->id_sudoku_team);
+		$criteria->compare('id_tour',$this->id_tour);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-            'sort' => [
-                'defaultOrder'=>'id DESC'
-            ]
 		));
 	}
 
@@ -96,25 +77,14 @@ class Seasons extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Seasons the static model class
+	 * @return Addpoints the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
 	
-	
-	protected function beforeSave() {
-		if(parent::beforeSave()) {
-			return true;
-		} else {
-	       return false;
-		}
-	}
-	
-	protected function afterFind() {
-	   
-	   parent::afterFind();
-	}	
+
 
 }
+?>

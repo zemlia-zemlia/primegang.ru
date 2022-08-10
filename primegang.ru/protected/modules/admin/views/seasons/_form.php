@@ -22,15 +22,14 @@
 
 	<?php 
 		$eS = "".$form->errorSummary($model);
-		if (!empty($eS)) {?>
+		if (!empty($eS)) : ?>
 			<div class="panel panel-danger">
 				<div class="panel-heading">Ошибки при заполнении формы</div>
 				<div class="panel-body">
 					<?php echo $eS; ?>
 				</div>
 			</div>
-		<?}	
-	?>
+		<?php endif; ?>
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255,'class'=>'form-control','data-column'=>'name')); ?>
@@ -41,6 +40,13 @@
 		<?php echo $form->labelEx($model,'alias'); ?>
 		<?php echo $form->textField($model,'alias',array('size'=>60,'maxlength'=>255,'class'=>'form-control','data-column'=>'alias')); ?>
 		<?php echo $form->error($model,'alias'); ?>
+	</div>
+
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'archive'); ?>
+		<?php echo $form->checkBox($model,'archive',
+            array('class'=>'form-control','data-column'=>'archive')); ?>
+		<?php echo $form->error($model,'archive'); ?>
 	</div>
 
 	<div class="form-group buttons">

@@ -81,6 +81,8 @@
 								array('label'=>'Команды игроков', 	'url'=>array('/admin/sudokuteams'), 'active'=>(Yii::app()->controller->id=='sudokuteams')),
 								array('label'=>'Туры', 				'url'=>array('/admin/sudokutours'), 'active'=>(Yii::app()->controller->id=='sudokutours')),
 								array('label'=>'Сезоны судоку',		'url'=>array('/admin/sudokuseasons'), 'active'=>(Yii::app()->controller->id=='sudokuseasons')),
+								array('label'=>'Редактировать турнирную таблицу',		'url'=>array('/admin/sudokuseasons/table_edit'),
+                                    'active'=>(Yii::app()->controller->id=='sudokuseasons' && Yii::app()->controller->action =='tableEdit')),
 							),
 							'htmlOptions'=>array('class'=>'dropdown-menu'),
 						)); ?>

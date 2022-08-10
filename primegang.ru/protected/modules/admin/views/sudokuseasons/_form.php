@@ -22,36 +22,40 @@
 
 	<?php 
 		$eS = "".$form->errorSummary($model);
-		if (!empty($eS)) {?>
+		if (!empty($eS)) :?>
 			<div class="panel panel-danger">
 				<div class="panel-heading">Ошибки при заполнении формы</div>
 				<div class="panel-body">
 					<?php echo $eS; ?>
 				</div>
 			</div>
-		<?}	
-	?>
+		<?php endif; ?>
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255,'class'=>'form-control','data-column'=>'name')); ?>
+		<?php echo $form->textField($model,'name',
+            array('size'=>60,'maxlength'=>255,'class'=>'form-control','data-column'=>'name')); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'alias'); ?>
-		<?php echo $form->textField($model,'alias',array('size'=>60,'maxlength'=>255,'class'=>'form-control','data-column'=>'alias')); ?>
+		<?php echo $form->textField($model,'alias',
+            array('size'=>60,'maxlength'=>255,'class'=>'form-control','data-column'=>'alias')); ?>
 		<?php echo $form->error($model,'alias'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'divisions'); ?>
-		<?php echo $form->textField($model,'divisions',array('size'=>10,'maxlength'=>1,'class'=>'form-control','data-column'=>'divisions')); ?>
+		<?php echo $form->textField($model,'divisions',
+            array('size'=>10,'maxlength'=>1,'class'=>'form-control','data-column'=>'divisions')); ?>
 		<?php echo $form->error($model,'divisions'); ?>
 	</div>
 
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'division_names'); ?>
-		<?php echo $form->textField($model,'division_names',array('size'=>60,'maxlength'=>255,'class'=>'form-control','data-column'=>'division_names')); ?>
+		<?php echo $form->textField($model,'division_names',
+            array('size'=>60,'maxlength'=>255,'class'=>'form-control',
+                'data-column'=>'division_names')); ?>
 		<?php echo $form->error($model,'division_names'); ?>
 	</div>
 
@@ -62,7 +66,8 @@
 	</div>
 
 	<div class="form-group buttons">
-		<button class="btn btn-primary" type="submit"><?php echo($model->isNewRecord ? 'Создать' : 'Сохранить'); ?></button>
+		<button class="btn btn-primary" type="submit">
+            <?php echo($model->isNewRecord ? 'Создать' : 'Сохранить'); ?></button>
 	</div>
 
 <?php $this->endWidget(); ?>

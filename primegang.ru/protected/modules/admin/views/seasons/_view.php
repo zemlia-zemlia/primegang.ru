@@ -15,6 +15,9 @@
 	<?php echo CHtml::encode($data->alias); ?>
 	<br />
 
+        <b><?php echo CHtml::encode($data->archive ? 'Архив' : ''); ?></b>
+	<br />
+
 	
 	</div>
 </div>

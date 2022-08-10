@@ -5,9 +5,9 @@ class m170518_132349_neyavka_komand extends CDbMigration
 	const stt = "sudoku_tours_teams";
 	public function up()
 	{
-		$this->addColumn(self::stt, 'missing_team1', 'boolean');
-		$this->addColumn(self::stt, 'missing_team2', 'boolean');
-	}
+//		$this->addColumn(self::stt, 'missing_team1', 'boolean');
+//		$this->addColumn(self::stt, 'missing_team2', 'boolean');
+	}// TODO убрать, закоментировано с целью решения конфликта ручного изменения в базе
 
 	public function down()
 	{

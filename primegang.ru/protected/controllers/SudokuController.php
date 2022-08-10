@@ -1,31 +1,9 @@
 <?php
-//use services\TourService;
-//use CWebModule;
+
 
 class SudokuController extends Controller {
 
-//    /** @var TourService */
-//    private $tourService;
-//
-//
-//    /**
-//     * @param string $id
-//     * @param CWebModule $module
-//     * @param TourService $tourService
-//     * @param array $config
-//     */
-//    public function __construct(
-//        string $id,
-//        null,
-//        TourService $tourService,
-//        array $config = []
-//    )
-//    {
-//        parent::__construct($id, $module, $config);
-//
-//        $this->tourService = $tourService;
-//    }
-//
+
 
 
 	function init() {

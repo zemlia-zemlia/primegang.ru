@@ -26,6 +26,7 @@ class TourService
             $sql = "
 			SELECT
 				_teams.id_team,
+				_teams.id_tour as idtour,
 				SUM(_teams.goals) AS goals,
 				SUM(_teams.misses) AS misses,
 				SUM(_teams.goals - _teams.misses) AS diff,
@@ -51,7 +52,8 @@ class TourService
 						stt.id_tour,
 						stt.id_sudoku_team1 as id_team,
 						IF(stt.score_team1_total > stt.score_team2_total, 1, 0) AS win,
-						IF(stt.score_team1_total = stt.score_team2_total and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0) AS tee,
+						IF(stt.score_team1_total = stt.score_team2_total and 
+						NOT(stt.missing_team1 AND stt.missing_team2), 1, 0) AS tee,
 						IF(stt.score_team1_total < stt.score_team2_total, 1, 0) AS fail,
 						stt.score_team1_total as goals,
 						stt.score_team2_total as misses,
@@ -61,7 +63,16 @@ class TourService
 							IF(
 								stt.score_team1_total = stt.score_team2_total and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0
 							)
-						) as points
+						)
+						 +
+						 (
+						 SELECT addpt.points as addpoints
+						 FROM addpoints addpt
+						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team1
+						 AND addpt.id_tour = stt.id_tour
+						 LIMIT 1
+						 )
+						 as points
 					FROM sudoku_tours_teams stt
 					left join sudoku_tours t on t.id = stt.id_tour
 					WHERE stt.division = $d and t.id_season = :season
@@ -70,7 +81,8 @@ class TourService
 						stt.id_tour,
 						stt.id_sudoku_team2 as id_team,
 						IF(stt.score_team1_total < stt.score_team2_total, 1, 0) AS win,
-						IF(stt.score_team1_total = stt.score_team2_total and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0) AS tee,
+						IF(stt.score_team1_total = stt.score_team2_total and 
+						NOT(stt.missing_team1 AND stt.missing_team2), 1, 0) AS tee,
 						IF(stt.score_team1_total > stt.score_team2_total, 1, 0) AS fail,
 						stt.score_team2_total as goals,
 						stt.score_team1_total as misses,
@@ -78,9 +90,18 @@ class TourService
 							stt.score_team1_total < stt.score_team2_total, 
 							2, 
 							IF(
-								stt.score_team1_total = stt.score_team2_total and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0
+								stt.score_team1_total = stt.score_team2_total 
+								and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0
 							)
-						) as points
+						) +
+						 (
+						 SELECT addpt.points as addpoints
+						 FROM addpoints addpt
+						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team2
+						 AND addpt.id_tour = stt.id_tour
+						 LIMIT 1
+						 )
+						  as points
 					FROM sudoku_tours_teams stt
 					left join sudoku_tours t on t.id = stt.id_tour
 					WHERE stt.division = $d and t.id_season = :season
@@ -92,6 +113,7 @@ class TourService
             $command = Yii::app()->db->createCommand($sql);
             $command->bindParam('season', $season_id);
             $result[] = $command->queryAll();
+//            CVarDumper::dump($result, 5, true); die;
         }
         return $result;
     }

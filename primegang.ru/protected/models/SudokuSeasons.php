@@ -123,6 +123,9 @@ class SudokuSeasons extends CActiveRecord
 			'pagination' => [
 				'pageSize' => 100,
 			],
+            'sort' => [
+                'defaultOrder'=>'id DESC'
+            ]
 		));
 	}
 

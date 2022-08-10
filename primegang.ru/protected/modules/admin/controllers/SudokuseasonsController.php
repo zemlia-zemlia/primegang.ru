@@ -28,7 +28,7 @@ class SudokuseasonsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','admin','delete','select'),
+				'actions'=>array('index','view','create','update','admin','delete','select', 'tableEdit'),
 				'users'=>CommonFunctions::getAdmins(),
 			),
 			array('deny',  // deny all users
@@ -46,6 +46,61 @@ class SudokuseasonsController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionTableEdit()
+	{
+        if (Yii::app()->request->isPostRequest){
+
+//            CVarDumper::dump($_POST, 5, true); die;
+            $teams = $_POST;
+            $tourId = array_pop($teams);
+            foreach ($teams as $id => $team) {
+//                CVarDumper::dump($team, 5, true); die;
+                $addPoints = Addpoints::model()->find('id_sudoku_team='. $id .
+                    ' AND id_tour='. $tourId);
+                if ($addPoints) {
+                    $addPoints->points = $team['addpoints'];
+                    $addPoints->save();
+                }
+                else {
+                    $addPoints = new Addpoints();
+                    $addPoints->id_sudoku_team = $id;
+                    $addPoints->id_tour = $tourId;
+                    $addPoints->points = $team['addpoints'];
+                    $addPoints->save();
+                }
+                $updateTeam = SudokuToursTeams::model()->find(
+                    'id_tour=:id_tour AND id_sudoku_team1=:id',
+                    [':id_tour' => $tourId, ':id' => $id]
+                );
+                if ($updateTeam) {
+                    $updateTeam->score_team1_total = $team['goals'];
+                    $updateTeam->score_team2_total = $team['missing'];
+                    $updateTeam->save();
+                }
+
+
+
+
+            }
+
+        }
+
+
+        $season = SudokuSeasons::getCurrentSeason();
+        $tourService = new TourService();
+//        CVarDumper::dump($season->id, 5, true); die;
+        $tourTable = $tourService->returnTourTable($season->id);
+        // выборка списка дивизионов для сезона
+        $res = Yii::app()->db->createCommand(
+            'select `divisions`, `division_names` from `sudoku_seasons` where `id` = '.$season->id.
+            ' limit 1')->queryAll();
+        $divisions = $res[0]['divisions'];
+        $division_names = explode(';', $res[0]['division_names']);
+
+        $this->render('touredit', [
+            'tourTable'=>$tourTable, 'season' => $season, 'divisions' => $divisions, 'division_names' => $division_names, ]);
 	}
 
 	/**
