@@ -1,4 +1,4 @@
-# php_flag display_errors off
+php_flag display_errors on
 Options +FollowSymLinks
 DirectoryIndex index.php
 <IfModule mod_php5.c>
