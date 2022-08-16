@@ -27,6 +27,12 @@
 	<?php echo CHtml::encode($data->date); ?>
 	<br />
 
+        <?php
+        if(!empty($data->season))
+            echo $data->season->archive ? '<b>Архив</b>' : '';
+        ?>
+        <br />
+
 	
 	</div>
 </div>

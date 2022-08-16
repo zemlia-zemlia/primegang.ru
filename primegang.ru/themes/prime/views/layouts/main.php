@@ -142,7 +142,8 @@
 						$leagues = Leagues::model()->findAll();
 						foreach($leagues as $league):
 					?>
-						<a role="button" class="btn btn-link <?php echo $league->alias;?>" href="/leagues/<?php echo $league->alias;?>">
+						<a role="button" class="btn btn-link <?php echo $league->alias;?>"
+                           href="/leagues/<?php echo $league->alias;?>/false/0">
 							<span class="logo">&nbsp;</span>
 							<span class="flag">&nbsp;</span>
 							<?php $exploded = explode(" ",$league->name); ?>

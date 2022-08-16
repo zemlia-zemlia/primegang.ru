@@ -284,7 +284,7 @@ class SudokuController extends Controller {
 
 	public function actionArchivelist() {
 
-		$seasons = SudokuSeasons::model()->findAll('archive=1');
+		$seasons = SudokuSeasons::model()->findAll('archive=1 ORDER BY id DESC');
 		$season = SudokuSeasons::getPreviousSeason();
 
 		$this->render('archivelist', array('seasons' => $seasons, 'season' => $season));

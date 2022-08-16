@@ -8,8 +8,10 @@ $this->breadcrumbs=array(
 );
 
 $this->pageTitle = $model->name;
-
+//CVarDumper::dump($season, 5, true);
 ?>
+
+<?php if (!$archive) : ?>
 
 <!--инициализируем прогнозы-->
 <script>
@@ -49,7 +51,7 @@ $this->pageTitle = $model->name;
 		});
 	});
 </script>
-
+<?php endif; ?>
 
 <div class="row content">
 	<div class="container">
@@ -57,12 +59,14 @@ $this->pageTitle = $model->name;
 			<div class="league">
 				<h1 class="league_title"><span class="<?php echo $model->alias;?>"></span><?php echo $model->name; ?></h1>
 				<img src="/images/site/league_logo_<?php echo $model->alias;?>.png">
-			
-				<div class="tours">
+
+                <div class="tours">
 					<!-- следующий по дате тур (для прогнозов) -->
-					<?php
+                    <?php if (!$archive) : ?>
+
+                        <?php
 					$tour = Tours::currentTour($model->id);
-					if(!empty($tour)):
+					if (!empty($tour)) :
 					?>
 					<div class="tour next">
 						<a class="btn-block tourinfo" data-toggle="collapse" href="#collapse<?php echo $tour->id;?>" aria-expanded="true" aria-controls="collapseExample">
@@ -126,23 +130,42 @@ $this->pageTitle = $model->name;
 							</div>
 						</div>
 					</div>
-					<?php 
-						endif;
-					?>
-					
-					
-					<!-- бывшие туры (для результатов) -->
+					<?php endif; ?>
+                    <?php endif; ?>
+
+
+                    <!-- бывшие туры (для результатов) -->
 					<?php 
 					
 					$currentTour = Tours::currentTour($model->id);
 					
 					$criteria = new CDbCriteria();
 					$criteria->order = "tour_number DESC";
-					$criteria->condition = "t.id_league=:id_league AND t.date <= :now";
-					$criteria->params = array("id_league"=>$model->id, "now"=>date('Y-m-d'),);
+
+                    if (!($season == '0')) {
+                        $criteria->condition =
+                            "t.id_league=:id_league AND t.date <= :now AND t.id_season=:season";
+                        $criteria->params = [
+                            "id_league"=>$model->id,
+                            "now"=>date('Y-m-d'),
+                            "season"=>$season
+                        ];
+                    }
+                    else {
+                        $criteria->condition =
+                            "t.id_league=:id_league AND t.date <= :now";
+                        $criteria->params = [
+                            "id_league"=>$model->id,
+                            "now"=>date('Y-m-d'),
+                        ];
+                    }
+
+//                    CVarDumper::dump($seasonId, 5, true);die;
+
 					$tours = Tours::model()->with('games')->findAll($criteria);
 					$i = 0;
 					foreach($tours as $tour):
+//                        if ($tour->id_season != $season) continue;
 						if(!empty($currentTour) && $currentTour->id == $tour->id) continue;
 						$expanded = ($i==0)?true:false;
 						$i++;
@@ -221,8 +244,11 @@ $this->pageTitle = $model->name;
 					</div>
 					<?php endforeach;?>
 				</div>
-				
-				<!--полная статистика по лиге-->
+
+                <?php if (!$archive) : ?>
+
+
+                    <!--полная статистика по лиге-->
 				<?php
 					$league_stats = $model->getLeagueFullStats();
 					if(!empty($league_stats)): 
@@ -254,6 +280,7 @@ $this->pageTitle = $model->name;
 						<?php endforeach;?>
 					</table>
 				</div>
+				<?php endif;?>
 				<?php endif;?>
 			</div>
 		</div>			

@@ -115,6 +115,19 @@ class Seasons extends CActiveRecord
 	protected function afterFind() {
 	   
 	   parent::afterFind();
-	}	
+	}
+
+    /**
+     * @return SudokuSeasons Previous season model.
+     */
+    public static function getPreviousSeason() {
+        $criteria = new CDbCriteria();
+        $criteria->order = 'id DESC';
+        $criteria->condition = 'archive = 1';
+
+        return self::model()->find($criteria);
+    }
+
+
 
 }

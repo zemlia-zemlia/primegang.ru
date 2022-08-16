@@ -7,6 +7,31 @@ class GrandprixController extends Controller
 		Yii::app()->theme = 'prime';
 	}
 
+//    public function filters()
+//    {
+//        return array(
+//            'accessControl', // perform access control for CRUD operations
+//            'postOnly + delete', // we only allow deletion via POST request
+//        );
+//    }
+//
+//    /**
+//     * Specifies the access control rules.
+//     * This method is used by the 'accessControl' filter.
+//     * @return array access control rules
+//     */
+//    public function accessRules()
+//    {
+//        return array(
+//            array('allow',  // allow all users to perform 'index' and 'view' actions
+//                'actions'=>array('index','leagues','league'),
+//                'users'=>array('*'),
+//            ),
+//            array('deny',  // deny all users
+//                'users'=>array('*'),
+//            ),
+//        );
+//    }
 
 	private function getGranpriStats() {
 		$crit = new CDbCriteria();
@@ -48,8 +73,60 @@ class GrandprixController extends Controller
 		
 		return $stats;
 	}
+
+
 	public function actionIndex() {
-		$granpriStats = $this->getGranpriStats();
-		$this->render('index', array("stats"=>$granpriStats));
+        $seasons = Seasons::model()->findAll('archive=1 ORDER BY id DESC');
+        $season = Seasons::getPreviousSeason();
+
+        $this->render('archivelist', array('seasons' => $seasons, 'season' => $season));
 	}
+
+
+	public function actionLeagues($season_id) {
+        $leagues = Leagues::model()
+            ->findAll('id < 9 ORDER BY id DESC');
+        $season = Seasons::getPreviousSeason();
+
+        $this->render('leagues', [
+            'leagues' => $leagues,
+            'season' => $season,
+            'season_id' => $season_id,
+        ]);
+	}
+
+//    public function actionLeague($alias) {
+//CVarDumper::dump($alias, 5, true);die;
+//        $model=Leagues::model()
+//            ->find('alias=:alias',array("alias"=>$alias));
+//        if($model===null)
+//            throw new CHttpException(404,'The requested page does not exist.');
+//
+//        $this->render('view_leagues',array(
+//            'model'=>$model,
+//        ));
+//    }
+
+//    public function actionArchive($s = null) {
+//
+//        $season = null;
+//        if($s) {
+//            $season = Seasons::model()->find('alias = :alias and archive=1', array('alias' => $s));
+//            if(!$season) throw new CHttpException(404, 'Not found');
+//        } else $season = Seasons::getPreviousSeason();
+//
+//        $tourTable = $this->returnTourTable($season->id);
+//        $this->render('archive', array('tourTable'=>$tourTable, 'season' => $season));
+//
+//    }
+
+
+//	public function actionIndex() {
+//		$granpriStats = $this->getGranpriStats();
+//		$this->render('index', array("stats"=>$granpriStats));
+//	}
+//
+
+
+
 }

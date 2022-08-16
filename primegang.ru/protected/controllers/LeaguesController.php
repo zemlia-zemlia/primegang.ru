@@ -39,9 +39,11 @@ class LeaguesController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($alias) {
+	public function actionView($alias, $archive = false, $season = 0) {
 		$this->render('view',array(
 			'model'=>$this->loadModel($alias),
+			'archive'=>$archive,
+			'season'=>$season,
 		));
 	}
 	
