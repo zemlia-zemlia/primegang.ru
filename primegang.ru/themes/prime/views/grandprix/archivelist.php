@@ -29,14 +29,7 @@
 
 		<div class="col-lg-6 right">
 			<div class="league_sidebar">
-				<?php $this->widget('SudokuSidebar', array(
-					'type'	=>"bombers",
-					'season' => $season->alias,
-				)); ?>
-				<?php $this->widget('SudokuSidebar', array(
-					'type'	=>"goleadors",
-					'season' => $season->alias,
-				));?>
+
 
 			</div>
 		</div>

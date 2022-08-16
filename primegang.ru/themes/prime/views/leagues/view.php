@@ -152,15 +152,22 @@ $this->pageTitle = $model->name;
                         ];
                     }
                     else {
+                        $currentSeasons = Seasons::model()->findAll('1=1');
+                        $currentSeason = array_pop($currentSeasons);
+//                        CVarDumper::dump($currentSeason, 5, true);die;
+
                         $criteria->condition =
-                            "t.id_league=:id_league AND t.date <= :now";
+                            "t.id_league=:id_league AND t.date <= :now AND t.id_season=:season";
+
                         $criteria->params = [
                             "id_league"=>$model->id,
                             "now"=>date('Y-m-d'),
+                            "season"=>$currentSeason->id
+
                         ];
                     }
 
-//                    CVarDumper::dump($seasonId, 5, true);die;
+//                    CVarDumper::dump($tour, 5, true);die;
 
 					$tours = Tours::model()->with('games')->findAll($criteria);
 					$i = 0;
