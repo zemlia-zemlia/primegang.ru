@@ -51,15 +51,14 @@ $(function(){
 
 	<?php 
 		$eS = "".$form->errorSummary($model);
-		if (!empty($eS)) {?>
+		if (!empty($eS)) :?>
 			<div class="panel panel-danger">
 				<div class="panel-heading">Ошибки при заполнении формы</div>
 				<div class="panel-body">
 					<?php echo $eS; ?>
 				</div>
 			</div>
-		<?}	
-	?>
+		<?php endif; ?>
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'id_season'); ?>
 		<?php echo $form->hiddenField($model,'id_season',array('data-column'=>'id_season')); ?>

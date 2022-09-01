@@ -71,6 +71,7 @@
 	$divisions = $res[0]['divisions'];
 	$division_names = explode(';', $res[0]['division_names']);
 	$division_select = array();
+	$select = array();
 	for ($d = 0; $d < $divisions; $d++)
 		$division_select[$d + 1] = isset($division_names[$d]) && $division_names[$d] ? $division_names[$d] : 'Дивизион '.($d + 1);
 

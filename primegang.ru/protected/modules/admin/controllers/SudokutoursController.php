@@ -98,8 +98,10 @@ class SudokutoursController extends Controller
 		if(isset($_POST['SudokuTours']))
 		{
 			$model->attributes=$_POST['SudokuTours'];
-			if(isset($_POST['SudokuTours']['_games'])) $model->_games = $_POST['SudokuTours']['_games'];
-			if(isset($_POST['SudokuTours']['_teams'])) $model->_teams = $_POST['SudokuTours']['_teams'];
+			if(isset($_POST['SudokuTours']['_games']))
+			    $model->_games = $_POST['SudokuTours']['_games'];
+			if(isset($_POST['SudokuTours']['_teams']))
+			    $model->_teams = $_POST['SudokuTours']['_teams'];
 			
 			if($model->save())
 				$this->redirect(array('index'));

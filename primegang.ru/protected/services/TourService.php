@@ -27,8 +27,31 @@ class TourService
 			SELECT
 				_teams.id_team,
 				_teams.id_tour as idtour,
-				SUM(_teams.goals) AS goals,
-				SUM(_teams.misses) AS misses,
+				SUM(_teams.goals) 
+				
+								+		 (
+						 SELECT addscr.goals as addgoals
+						 FROM add_score addscr
+						 WHERE addscr.id_sudoku_team = _teams.id_team
+						 AND addscr.id_season = :season
+						 LIMIT 1
+						 )
+						
+
+				
+				AS goals,
+				SUM(_teams.misses) 
+								
+								+		 (
+						 SELECT addscr.missing as addmisses
+						 FROM add_score addscr
+						 WHERE addscr.id_sudoku_team = _teams.id_team
+						 AND addscr.id_season = :season
+						 LIMIT 1
+						 )
+						
+
+				AS misses,
 				SUM(_teams.goals - _teams.misses) AS diff,
 				SUM(_teams.points) AS points,
 				SUM(_teams.win) AS win,

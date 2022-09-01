@@ -33,6 +33,7 @@ $this->pageTitle = "Турнир VIVA SUDOKU!";
 								echo '<h3>'.$division_select[$d + 1].'</h3>';
 
 							?>
+                            <input type="submit" style="z-index: 10000" value="Сохранить">
 							<table class="table">
 								<tr>
 									<th class="place_legend">№</th>
@@ -97,9 +98,9 @@ $this->pageTitle = "Турнир VIVA SUDOKU!";
 						</div>
 					<?php endfor;?>
                         <input type="hidden" name="idtour" value="<?= $idTour ?>">
-                        <input type="submit" value="Сохранить">
+                        <input type="submit" style="z-index: 10000" value="Сохранить">
                     </form>
-					
+
 				</div>
 			</div>
 		</div>			
