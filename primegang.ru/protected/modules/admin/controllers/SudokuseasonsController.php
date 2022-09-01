@@ -56,13 +56,12 @@ class SudokuseasonsController extends Controller
 
 //            CVarDumper::dump($_POST, 5, true); die;
             $teams = $_POST;
-            $tourId = array_pop($teams);
             foreach ($teams as $id => $team) {
-//                CVarDumper::dump($team, 5, true); die;
+//                if ($id == 14){CVarDumper::dump($team, 5, true); die;}
 
                 // add points
                 $addPoints = Addpoints::model()->find('id_sudoku_team='. $id .
-                    ' AND id_tour='. $tourId);
+                    ' AND id_season='. $season->id);
 
                 if ($addPoints) {
                     $addPoints->points = $team['addpoints'];
@@ -71,7 +70,7 @@ class SudokuseasonsController extends Controller
                 else {
                     $addPoints = new Addpoints();
                     $addPoints->id_sudoku_team = $id;
-                    $addPoints->id_tour = $tourId;
+                    $addPoints->id_season = $season->id;
                     $addPoints->points = $team['addpoints'];
                     $addPoints->save();
                 }
@@ -86,31 +85,28 @@ class SudokuseasonsController extends Controller
                     ->queryAll();
                 $ids = implode(', ', array_map('intval', $tourIds));
                 $updateTeam = SudokuToursTeams::model()->findAll(
-                    'id_tour IN (' .$ids. ') AND id_sudoku_team1=:id',
+                    'id_tour IN (' .$ids. ') AND (id_sudoku_team1=:id 
+                    OR id_sudoku_team2=:id) ',
                     [ ':id' => $id]
                 );
 
 
                 if ($updateTeam) {
-
+//                    CVarDumper::dump($updateTeam, 5, true); die;
                     $existScore = ['goals' => 0, 'missing' => 0];
 
                     foreach ($updateTeam as $uteam) {
-                        $existScore['goals'] = $existScore['goals'] + $uteam->score_team1_total;
-                        $existScore['missing'] = $existScore['missing'] + $uteam->score_team2_total;
+                        if ($uteam->id_sudoku_team1 == $id) {
+                            $existScore['goals'] = $existScore['goals'] + $uteam->score_team1_total;
+                            $existScore['missing'] = $existScore['missing'] + $uteam->score_team2_total;
+                        }
+                        elseif ($uteam->id_sudoku_team2 == $id) {
+                            $existScore['goals'] = $existScore['goals'] + $uteam->score_team2_total;
+                            $existScore['missing'] = $existScore['missing'] + $uteam->score_team1_total;
+                        }
                     }
 
-                    $updateTeam2 = SudokuToursTeams::model()->findAll(
-                        'id_tour IN (' .$ids. ') AND id_sudoku_team2=:id',
-                        [ ':id' => $id]
-                    );
 
-                    if ($updateTeam2) {
-                    foreach ($updateTeam2 as $uteam) {
-                        $existScore['goals'] = $existScore['goals'] + $uteam->score_team2_total;
-                        $existScore['missing'] = $existScore['missing'] + $uteam->score_team1_total;
-                    }
-                    }
 
 
 
@@ -156,7 +152,8 @@ class SudokuseasonsController extends Controller
         $division_names = explode(';', $res[0]['division_names']);
 
         $this->render('touredit', [
-            'tourTable'=>$tourTable, 'season' => $season, 'divisions' => $divisions, 'division_names' => $division_names, ]);
+            'tourTable'=>$tourTable, 'season' => $season,
+            'divisions' => $divisions, 'division_names' => $division_names, ]);
 	}
 
     public function actionCreate()

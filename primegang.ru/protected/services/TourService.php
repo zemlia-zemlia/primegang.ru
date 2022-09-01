@@ -29,26 +29,37 @@ class TourService
 				_teams.id_tour as idtour,
 				SUM(_teams.goals) 
 				
-								+		 (
-						 SELECT addscr.goals as addgoals
+								+		(IF(
+						 (SELECT addscr.goals as addgoals
 						 FROM add_score addscr
 						 WHERE addscr.id_sudoku_team = _teams.id_team
 						 AND addscr.id_season = :season
-						 LIMIT 1
-						 )
+						 LIMIT 1),
+						 (SELECT addscr.goals as addgoals
+						 FROM add_score addscr
+						 WHERE addscr.id_sudoku_team = _teams.id_team
+						 AND addscr.id_season = :season
+						 LIMIT 1),
+						 0))
 						
 
 				
 				AS goals,
 				SUM(_teams.misses) 
 								
-								+		 (
-						 SELECT addscr.missing as addmisses
+								+		(IF(
+						 (SELECT addscr.missing as addmissing
 						 FROM add_score addscr
 						 WHERE addscr.id_sudoku_team = _teams.id_team
 						 AND addscr.id_season = :season
-						 LIMIT 1
-						 )
+						 LIMIT 1),
+						 (SELECT addscr.missing as addmissing
+						 FROM add_score addscr
+						 WHERE addscr.id_sudoku_team = _teams.id_team
+						 AND addscr.id_season = :season
+						 LIMIT 1),
+						 0))
+
 						
 
 				AS misses,
@@ -88,13 +99,20 @@ class TourService
 							)
 						)
 						 +
+						 (IF(
+						 (SELECT addpt.points as addpoints
+						 FROM addpoints addpt
+						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team1
+						 AND addpt.id_season = :season
+						 LIMIT 1
+						 ),
 						 (
 						 SELECT addpt.points as addpoints
 						 FROM addpoints addpt
 						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team1
-						 AND addpt.id_tour = stt.id_tour
+						 AND addpt.id_season = :season
 						 LIMIT 1
-						 )
+						 ),0))
 						 as points
 					FROM sudoku_tours_teams stt
 					left join sudoku_tours t on t.id = stt.id_tour
@@ -117,13 +135,20 @@ class TourService
 								and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0
 							)
 						) +
+						 (IF(
+						 (SELECT addpt.points as addpoints
+						 FROM addpoints addpt
+						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team2
+						 AND addpt.id_season = :season
+						 LIMIT 1
+						 ),
 						 (
 						 SELECT addpt.points as addpoints
 						 FROM addpoints addpt
 						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team2
-						 AND addpt.id_tour = stt.id_tour
+						 AND addpt.id_season = :season
 						 LIMIT 1
-						 )
+						 ),0))
 						  as points
 					FROM sudoku_tours_teams stt
 					left join sudoku_tours t on t.id = stt.id_tour

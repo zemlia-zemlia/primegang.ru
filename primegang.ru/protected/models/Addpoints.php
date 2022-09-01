@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'addpoints':
  * @property integer $id
  * @property integer $id_sudoku_team
- * @property integer $id_tour
+ * @property integer $id_season
  */
 class Addpoints extends CActiveRecord
 {
@@ -26,10 +26,10 @@ class Addpoints extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_sudoku_team, id_tour', 'numerical', 'integerOnly'=>true),
+			array('id_sudoku_team, id_season', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_sudoku_team, id_tour', 'safe', 'on'=>'search'),
+			array('id, id_sudoku_team, id_season', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -42,7 +42,7 @@ class Addpoints extends CActiveRecord
 		return array(
 'id' => 'ID',
 'id_sudoku_team' => 'Id Sudoku Team',
-'id_tour' => 'Id Tour',
+'id_season' => 'Id Tour',
 		);
 	}
 
@@ -66,7 +66,7 @@ class Addpoints extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('id_sudoku_team',$this->id_sudoku_team);
-		$criteria->compare('id_tour',$this->id_tour);
+		$criteria->compare('id_season',$this->id_season);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
