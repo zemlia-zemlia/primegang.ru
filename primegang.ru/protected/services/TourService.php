@@ -64,7 +64,26 @@ class TourService
 
 				AS misses,
 				SUM(_teams.goals - _teams.misses) AS diff,
-				SUM(_teams.points) AS points,
+				SUM(_teams.points) 
+				+
+						 (IF(
+						 (SELECT addpt.points as addpoints
+						 FROM addpoints addpt
+						 WHERE addpt.id_sudoku_team = _teams.id_team
+						 AND addpt.id_season = :season
+						 LIMIT 1
+						 ),
+						 (
+						 SELECT addpt.points as addpoints
+						 FROM addpoints addpt
+						 WHERE addpt.id_sudoku_team = _teams.id_team
+						 AND addpt.id_season = :season
+						 LIMIT 1
+						 ),0))
+				
+				AS points,
+				
+				
 				SUM(_teams.win) AS win,
 				SUM(_teams.tee) AS tee,
 				SUM(_teams.fail) AS fail,
@@ -98,21 +117,7 @@ class TourService
 								stt.score_team1_total = stt.score_team2_total and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0
 							)
 						)
-						 +
-						 (IF(
-						 (SELECT addpt.points as addpoints
-						 FROM addpoints addpt
-						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team1
-						 AND addpt.id_season = :season
-						 LIMIT 1
-						 ),
-						 (
-						 SELECT addpt.points as addpoints
-						 FROM addpoints addpt
-						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team1
-						 AND addpt.id_season = :season
-						 LIMIT 1
-						 ),0))
+
 						 as points
 					FROM sudoku_tours_teams stt
 					left join sudoku_tours t on t.id = stt.id_tour
@@ -134,21 +139,7 @@ class TourService
 								stt.score_team1_total = stt.score_team2_total 
 								and NOT(stt.missing_team1 AND stt.missing_team2), 1, 0
 							)
-						) +
-						 (IF(
-						 (SELECT addpt.points as addpoints
-						 FROM addpoints addpt
-						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team2
-						 AND addpt.id_season = :season
-						 LIMIT 1
-						 ),
-						 (
-						 SELECT addpt.points as addpoints
-						 FROM addpoints addpt
-						 WHERE addpt.id_sudoku_team = stt.id_sudoku_team2
-						 AND addpt.id_season = :season
-						 LIMIT 1
-						 ),0))
+						) 
 						  as points
 					FROM sudoku_tours_teams stt
 					left join sudoku_tours t on t.id = stt.id_tour
