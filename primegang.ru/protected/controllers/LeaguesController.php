@@ -40,11 +40,21 @@ class LeaguesController extends Controller
 	 * @param integer $id the ID of the model to be displayed
 	 */
 	public function actionView($alias, $archive = false, $season = 0) {
-		$this->render('view',array(
-			'model'=>$this->loadModel($alias),
-			'archive'=>($archive == 'true') ? true : false ,
-			'season'=>$season,
-		));
+        $archive = ($archive == 'true') ? true : false;
+        if (!$archive) {
+            $this->render('view', array(
+                'model' => $this->loadModel($alias),
+                'archive' => $archive,
+                'season' => $season,
+            ));
+        }
+        else {
+            $this->render('view_archive', array(
+                'model' => $this->loadModel($alias),
+                'archive' => $archive,
+                'season' => $season,
+            ));
+        }
 	}
 	
 	public function actionTouronline($id) {

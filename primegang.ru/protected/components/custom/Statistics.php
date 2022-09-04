@@ -8,38 +8,39 @@ class Statistics extends CPortlet {
 	public $dataId = null;
 	public $limit = 10;
 	public $view = "_sidebar";
-	
-	private $possibleTypes = array("tour","league","season");
+	public $archive = false;
+
+	private $possibleTypes = ["tour","league","season"];
  
     private function getStatistics() {
-    	if(!in_array($this->type, $this->possibleTypes)) return array();
-		
+    	if(!in_array($this->type, $this->possibleTypes)) return [];
 		$header = "";
-		
 		$where = "1";
-		$params = array();
+		$params = [];
+        $criteria = new CDbCriteria();
+        $criteria->order="id DESC";
+        $season = Seasons::model()->find($criteria);
 		switch ($this->type) {
 			case 'tour':
-				$where = "g.id_tour = :id_tour";
+				$where = !$this->archive ?
+                    "g.id_tour = :id_tour AND g.id_season = " . $season->id
+                    : "g.id_tour = :id_tour";
 				$header = "Лидеры тура";
-				$params = array("id_tour"=>$this->dataId);
+				$params = ["id_tour"=>$this->dataId];
 				break;
 			case 'league':
-				$where = "g.id_league = :id_league";
-				$params = array("id_league"=>$this->dataId);
+                $where = !$this->archive ?
+                    "g.id_league = :id_league AND g.id_season = " . $season->id
+                    : "g.id_league = :id_league";				$params = ["id_league"=>$this->dataId];
 				$header = "Лидеры лиги";
 				break;
 			case 'season':
 				$where = "g.id_season = :id_season";
 				$header = "Лидеры гран-при";
 				if(empty($dataId)) {
-					
-					$criteria = new CDbCriteria();
-					$criteria->order="id DESC";
-					$season = Seasons::model()->find($criteria);
 					$this->dataId = $season->id;
 				} 
-				$params = array("id_season"=>$this->dataId);
+				$params = ["id_season"=>$this->dataId];
 				break;
 		}
 		
