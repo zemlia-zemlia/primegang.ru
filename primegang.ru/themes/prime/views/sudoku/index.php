@@ -111,11 +111,7 @@ $this->pageTitle = "Турнир VIVA SUDOKU!";
 									$steam = SudokuTeams::model()->findByPk($ttRow['id_team']);
 									if(empty($steam)) continue;
 									$i++;
-                                    $idTour = $ttRow['idtour'];
-                                    $addPoints = Addpoints::model()->find('id_sudoku_team='. $ttRow['id_team'].
-                                        ' AND id_tour='. $idTour);
-//                                    CVarDumper::dump($ttRow, 5, true); die;
-//                                    $points = $addPoints ? ($ttRow['points'] + $addPoints->points) : $ttRow['points'];
+
 								?>
 								<tr>
 									<td class="place"><?php echo $i;?></td>
