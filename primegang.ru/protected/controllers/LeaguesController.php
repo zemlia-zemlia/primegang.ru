@@ -42,7 +42,7 @@ class LeaguesController extends Controller
 	public function actionView($alias, $archive = false, $season = 0) {
 		$this->render('view',array(
 			'model'=>$this->loadModel($alias),
-			'archive'=>$archive,
+			'archive'=>($archive == 'true') ? true : false ,
 			'season'=>$season,
 		));
 	}
