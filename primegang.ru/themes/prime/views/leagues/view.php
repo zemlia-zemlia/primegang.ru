@@ -240,7 +240,9 @@ $this->pageTitle = $model->name;
 				</div>
                 <!--полная статистика по лиге-->
                 <?php
-                $league_stats = $model->getLeagueFullStats();
+                $currentSeason = Seasons::model()->findAll('1=1 order by id DESC limit 1');
+//                CVarDumper::dump($currentSeason, 5, true);die;
+                $league_stats = $model->getLeagueFullStats($currentSeason[0]->id);
                 if(!empty($league_stats)):
                     ?>
                     <div class="league_statistics">

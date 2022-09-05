@@ -34,8 +34,10 @@ class Leagues extends CActiveRecord
 		);
 	}
 
-	public function getLeagueFullStats() {
+	public function getLeagueFullStats($seasonId = false) {
 		if($this->isNewRecord) return array();
+		if ($seasonId) $season = ' AND id_season = ' . $seasonId;
+		else $season = '';
 		$sql = "select 
 			pr.id_user as id_user,
 			g.id_league as id_tour,
@@ -48,7 +50,7 @@ class Leagues extends CActiveRecord
 		FROM 
 			prognosis as pr 
 			LEFT JOIN games as g on pr.id_game = g.id
-		WHERE g.id_league = :id_league and pr.computed = :computed
+		WHERE g.id_league = :id_league and pr.computed = :computed" . $season . "
 		GROUP BY pr.id_user
 		ORDER BY points DESC,fact DESC,tee DESC,res DESC";
 		$command = Yii::app()->db->createCommand($sql);
