@@ -177,7 +177,7 @@ $this->pageTitle = $model->name;
 				)); ?>
 				<?php $this->widget('Statistics', array(
 					'type'	=>"season",
-					'dataId'=> "",
+					'dataId'=> $season,
 					'limit' => 3,
 					'view' 	=> "_sidebar",
                     'archive' => true,

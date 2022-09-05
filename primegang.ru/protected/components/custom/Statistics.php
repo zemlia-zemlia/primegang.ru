@@ -20,6 +20,7 @@ class Statistics extends CPortlet {
         $criteria = new CDbCriteria();
         $criteria->order="id DESC";
         $season = Seasons::model()->find($criteria);
+
 		switch ($this->type) {
 			case 'tour':
 				$where = !$this->archive ?
@@ -31,15 +32,17 @@ class Statistics extends CPortlet {
 			case 'league':
                 $where = !$this->archive ?
                     "g.id_league = :id_league AND g.id_season = " . $season->id
-                    : "g.id_league = :id_league";				$params = ["id_league"=>$this->dataId];
+                    : "g.id_league = :id_league";
+                $params = ["id_league"=>$this->dataId];
 				$header = "Лидеры лиги";
 				break;
 			case 'season':
 				$where = "g.id_season = :id_season";
 				$header = "Лидеры гран-при";
-				if(empty($dataId)) {
+				if(!$this->dataId) {
 					$this->dataId = $season->id;
-				} 
+				}
+//                CVarDumper::dump($this->dataId, 5, true);
 				$params = ["id_season"=>$this->dataId];
 				break;
 		}

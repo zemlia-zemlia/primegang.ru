@@ -27,67 +27,43 @@ class TourService
 			SELECT
 				_teams.id_team,
 				_teams.id_tour as idtour,
-				SUM(_teams.goals) 
-				
-								+		(IF(
+				SUM(_teams.goals) +	(IF(
+						 (SELECT addscr.goals as addgoals
+						 FROM add_score addscr
+						 WHERE addscr.id_sudoku_team = _teams.id_team
+						 AND addscr.id_season = :season LIMIT 1),
 						 (SELECT addscr.goals as addgoals
 						 FROM add_score addscr
 						 WHERE addscr.id_sudoku_team = _teams.id_team
 						 AND addscr.id_season = :season
-						 LIMIT 1),
-						 (SELECT addscr.goals as addgoals
+						 LIMIT 1), 0)) AS goals,
+				SUM(_teams.misses) + (IF(
+						 (SELECT addscr.missing as addmissing
 						 FROM add_score addscr
 						 WHERE addscr.id_sudoku_team = _teams.id_team
-						 AND addscr.id_season = :season
-						 LIMIT 1),
-						 0))
-						
-
-				
-				AS goals,
-				SUM(_teams.misses) 
-								
-								+		(IF(
+						 AND addscr.id_season = :season LIMIT 1),
 						 (SELECT addscr.missing as addmissing
 						 FROM add_score addscr
 						 WHERE addscr.id_sudoku_team = _teams.id_team
 						 AND addscr.id_season = :season
-						 LIMIT 1),
-						 (SELECT addscr.missing as addmissing
-						 FROM add_score addscr
-						 WHERE addscr.id_sudoku_team = _teams.id_team
-						 AND addscr.id_season = :season
-						 LIMIT 1),
-						 0))
-
-						
-
-				AS misses,
-				SUM(_teams.goals - _teams.misses) AS diff,
-				SUM(_teams.points) 
-				+
-						 (IF(
+						 LIMIT 1), 0)) AS misses,
+				SUM(_teams.points) + (IF(
 						 (SELECT addpt.points as addpoints
 						 FROM addpoints addpt
 						 WHERE addpt.id_sudoku_team = _teams.id_team
 						 AND addpt.id_season = :season
-						 LIMIT 1
-						 ),
-						 (
+						 LIMIT 1),(
 						 SELECT addpt.points as addpoints
 						 FROM addpoints addpt
 						 WHERE addpt.id_sudoku_team = _teams.id_team
 						 AND addpt.id_season = :season
-						 LIMIT 1
-						 ),0))
-				
-				AS points,
-				
-				
+						 LIMIT 1),0)) AS points,
 				SUM(_teams.win) AS win,
 				SUM(_teams.tee) AS tee,
 				SUM(_teams.fail) AS fail,
-				SUM(1) as tour_count
+				SUM(1) as tour_count, 
+				SUM(_teams.goals - _teams.misses) AS diff
+
 			FROM (
 				SELECT
 					t.id AS id_tour,
@@ -152,7 +128,6 @@ class TourService
             $command = Yii::app()->db->createCommand($sql);
             $command->bindParam('season', $season_id);
             $result[] = $command->queryAll();
-//            CVarDumper::dump($result, 5, true); die;
         }
         return $result;
     }
